@@ -1,0 +1,41 @@
+from django.db import models
+from common.choices import DISTRICT_CHOICES
+
+# Create your models here.
+class CustomerType(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = "Customer Type"
+        verbose_name_plural = "Customer Types"
+
+    def __str__(self):
+        return self.name
+
+    
+class Customer(models.Model):
+    name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=20)
+    customer_type = models.ForeignKey(
+        CustomerType,
+        on_delete=models.PROTECT,
+        related_name='customers'
+    )
+    contact_person = models.CharField(max_length=100, blank=True, null=True)
+    contact_person_number = models.CharField(max_length=20, blank=True, null=True)
+    district = models.CharField(
+       max_length=100,
+       choices=DISTRICT_CHOICES
+    )
+    area = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = "Customer"
+        verbose_name_plural = "Customers"
