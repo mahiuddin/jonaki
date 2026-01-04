@@ -14,7 +14,7 @@ class Supplier(models.Model):
     )
 
     contact_number = models.CharField(
-        max_length=20,
+        max_length=100,
         blank=True,
         null=True
     )
