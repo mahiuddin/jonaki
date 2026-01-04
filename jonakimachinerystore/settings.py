@@ -31,6 +31,13 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['95.217.7.154', '127.0.0.1', 'localhost', 'jonaki.insafee.com','www.jonaki.insafee.com']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://jonaki.insafee.com',
+    'https://www.jonaki.insafee.com',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 AUTH_USER_MODEL = 'auth.User'
 
 
