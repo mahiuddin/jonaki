@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import CustomerType, Customer
+from .models import CustomerType, Customer, NoSaleReason
 
 @admin.register(CustomerType)
 class CustomerTypeAdmin(admin.ModelAdmin):
@@ -21,3 +21,9 @@ class CustomerAdmin(admin.ModelAdmin):
     )
     search_fields = ('name', 'phone', 'contact_person')
     list_filter = ('customer_type', 'district')
+
+@admin.register(NoSaleReason)
+class NoSaleReasonAdmin(admin.ModelAdmin):
+    list_display = ('customer', 'reason', 'visiting_date', 'visiting_time')
+    list_filter = ('reason', 'visiting_date')
+    search_fields = ('customer__name',)

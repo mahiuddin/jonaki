@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'products',
     'suppliers',
     'data_imports',
+    'stocks',
 ]
 
 MIDDLEWARE = [

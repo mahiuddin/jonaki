@@ -92,4 +92,18 @@ ORDER_STATUS_CHOICES = [
     ('complete', 'Complete'),
     ('return', 'Return'),
     ('cancel', 'Cancel'),
-]       
+]
+
+NO_SALE_REASON_CHOICES = [
+        ('PRICE_HIGH', 'Price Too High'),
+        ('NO_STOCK', 'Product Not Available'),
+        ('INQUIRY', 'Inquiry Only'),
+        ('COMPARE', 'Comparing Prices'),
+        ('LATER', 'Will Buy Later'),
+        ('LEFT_WITHOUT_REASON', 'Left Without Reason'),
+        ('OUT_OF_BUDGET', 'Out of Budget'),
+        ('WRONG_SPECIFICATION', 'Wrong Specification'),
+        ('ANOTHER_BRAND', 'Looking for Another Brand'),
+        ('URGENT_NEED_NOT_MET', 'Urgent Need Not Met'),
+        ('OTHER', 'Other'),
+]
