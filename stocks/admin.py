@@ -8,7 +8,7 @@ from .models import CustomerReconciliation, FinancialReconciliation, ProductReco
 class SupplierReconciliationAdmin(admin.ModelAdmin):
     list_display = ('reconciliation_date', 'supplier', 'balance_amount', 'adjust_amount', 'created_at')
     search_fields = ('supplier__name',)
-    list_filter = ('supplier',)
+    list_filter = ('reconciliation_date','supplier',)
     date_hierarchy = 'reconciliation_date'
 
 @admin.register(ProductReconciliation)
