@@ -21,9 +21,8 @@ class Expense(models.Model):
         related_name='expenses'
     )
 
-    amount = models.DecimalField(
-        max_digits=12,
-        decimal_places=2
+    amount = models.IntegerField(
+        help_text="Expense amount"
     )
 
     description = models.TextField(

@@ -1,6 +1,6 @@
 from datetime import timezone
 from django.db import models
-from common.choices import DISTRICT_CHOICES, NO_SALE_REASON_CHOICES
+from common.constants import DISTRICT_CHOICES, NO_SALE_REASON_CHOICES
 
 # Create your models here.
 class CustomerType(models.Model):

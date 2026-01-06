@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Employee(models.Model):
     name = models.CharField(max_length=100)
-    salary = models.DecimalField(max_digits=12, decimal_places=2)
+    salary = models.IntegerField(help_text="Employee's monthly salary")
     phone = models.CharField(max_length=20, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)  # correct: function, no ()
     updated_at = models.DateTimeField(auto_now=True)  # will set initial value
@@ -20,9 +20,8 @@ class Salary(models.Model):
 
     salary_date = models.DateField()
 
-    amount = models.DecimalField(
-        max_digits=12,
-        decimal_places=2
+    amount = models.IntegerField(
+        help_text="Salary amount"
     )
 
     description = models.TextField(

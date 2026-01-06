@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from common.choices import COUNTRY_CHOICES,MEASUREMENT_UNIT_CHOICES,PRODUCT_STATUS_CHOICES
+from common.constants import COUNTRY_CHOICES,MEASUREMENT_UNIT_CHOICES,PRODUCT_STATUS_CHOICES
 
 # Create your models here.
 class Brand(models.Model):

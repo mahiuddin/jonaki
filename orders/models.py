@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from customers.models import Customer
-from common.choices import ORDER_STATUS_CHOICES
+from common.constants import ORDER_STATUS_CHOICES
 
 # Create your models here.
 
@@ -32,14 +32,12 @@ class Order(models.Model):
         default=0
     )
 
-    sale_amount = models.DecimalField(
-        max_digits=12,
-        decimal_places=2
+    sale_amount = models.IntegerField(
+        help_text="Sale amount"
     )
 
-    profit = models.DecimalField(
-        max_digits=12,
-        decimal_places=2
+    profit = models.IntegerField(
+        help_text="Profit amount"
     )
 
     status = models.CharField(

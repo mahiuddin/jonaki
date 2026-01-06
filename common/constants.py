@@ -107,3 +107,9 @@ NO_SALE_REASON_CHOICES = [
         ('URGENT_NEED_NOT_MET', 'Urgent Need Not Met'),
         ('OTHER', 'Other'),
 ]
+
+FINANCIAL_RECONCILIATION_CATEGORY_CHOICES = [
+    ('cash', 'Cash'),
+    ('bank', 'Bank'),
+    ('others', 'Others'),
+]

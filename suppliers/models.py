@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from common.choices import DISTRICT_CHOICES
+from common.constants import DISTRICT_CHOICES
 from jonakimachinerystore import settings
 
 # Create your models here.
