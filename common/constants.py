@@ -113,3 +113,17 @@ FINANCIAL_RECONCILIATION_CATEGORY_CHOICES = [
     ('bank', 'Bank'),
     ('others', 'Others'),
 ]
+
+MOBILE_BANKING_CATEGORY_CHOICES = [
+    ('BKASH', 'bKash'),
+    ('NAGAD', 'Nagad'),
+    ('ROCKET', 'Rocket'),
+    ('BKASHPERSONAL', 'Bkash Personal'),
+    ('NAGADPERSONAL', 'Nagad Personal'),
+    ('ROCKETPERSONAL', 'Rocket Personal'),
+    ('UPAY', 'Upay'),
+    ('SURECASH', 'SureCash'),
+    ('MCASH', 'mCash'),
+    ('UPAY', 'Upay'),
+    ('OTHER', 'Other'),
+]
