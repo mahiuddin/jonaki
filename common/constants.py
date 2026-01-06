@@ -124,6 +124,5 @@ MOBILE_BANKING_CATEGORY_CHOICES = [
     ('UPAY', 'Upay'),
     ('SURECASH', 'SureCash'),
     ('MCASH', 'mCash'),
-    ('UPAY', 'Upay'),
     ('OTHER', 'Other'),
 ]
