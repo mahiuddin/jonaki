@@ -1,4 +1,7 @@
+from time import timezone
 from django.db import models
+
+from common.constants import LEAVE_REASON_CHOICES
 
 # Create your models here.
 class Employee(models.Model):
@@ -35,3 +38,86 @@ class Salary(models.Model):
     def __str__(self):
         return f"{self.employee.name} - {self.salary_date} - {self.amount}"
     
+class Attendance(models.Model):
+    employee = models.ForeignKey(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='attendances'
+    )
+
+    attendance_date = models.DateField()
+
+    in_time = models.TimeField()
+    out_time = models.TimeField(
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['employee', 'attendance_date'],
+                name='unique_employee_attendance_date'
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.employee.name} - {self.attendance_date}"
+    
+class Leave(models.Model):
+    employee = models.ForeignKey(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='leaves'
+    )
+
+    leave_date = models.DateField()
+
+    leave_reason = models.CharField(
+        max_length=20,
+        choices=LEAVE_REASON_CHOICES
+    )
+
+    description = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['employee', 'leave_date'],
+                name='unique_employee_leave_date'
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.employee.name} - {self.get_leave_reason_display()} ({self.leave_date})"
+    
+class Holiday(models.Model):
+    holiday_date = models.DateField(
+        unique=True,
+        help_text="Official holiday date"
+    )
+
+    name = models.CharField(
+        max_length=150,
+        help_text="Holiday name"
+    )
+
+    remarks = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.holiday_date}"

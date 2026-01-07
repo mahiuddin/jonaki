@@ -1,6 +1,6 @@
 from datetime import timezone
 from django.db import models
-from common.constants import DISTRICT_CHOICES, NO_SALE_REASON_CHOICES
+from common.constants import CONTACT_TYPE_CHOICES, DISTRICT_CHOICES, NO_SALE_REASON_CHOICES, RESPONSE_TYPE_CHOICES
 
 # Create your models here.
 class CustomerType(models.Model):
@@ -65,3 +65,44 @@ class NoSaleReason(models.Model):
 
     def __str__(self):
         return f"{self.customer.name} - {self.get_reason_display()} - {self.visiting_date}"
+    
+
+class CustomerFollowUp(models.Model):
+
+    customer = models.ForeignKey(
+        'customers.Customer',
+        on_delete=models.CASCADE,
+        related_name='contacts'
+    )
+    contact_date = models.DateField()
+    contact_time = models.TimeField(
+        blank=True,
+        null=True
+    )
+
+    contact_type = models.CharField(
+        max_length=10,
+        choices=CONTACT_TYPE_CHOICES,
+        default='phone'
+    )
+
+    response_type = models.CharField(
+        max_length=20,
+        choices=RESPONSE_TYPE_CHOICES
+    )
+
+    next_contact_date = models.DateField(
+        blank=True,
+        null=True
+    )
+
+    remarks = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.customer} - {self.contact_date} ({self.contact_type})"

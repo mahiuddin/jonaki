@@ -126,3 +126,33 @@ MOBILE_BANKING_CATEGORY_CHOICES = [
     ('MCASH', 'mCash'),
     ('OTHER', 'Other'),
 ]
+
+LEAVE_REASON_CHOICES = [
+        ('SICK', 'Sick Leave'),
+        ('FAMILYSICK', 'Family Sick Leave'),
+        ('CASUAL', 'Casual or personal Leave'),
+        ('OTHER', 'Other'),
+]
+
+CONTACT_TYPE_CHOICES = [
+        ('phone', 'Phone'),
+        ('email', 'Email'),
+]
+
+RESPONSE_TYPE_CHOICES = [
+    ('received', 'Call Received'),
+    ('not_received', 'Call Not Received'),
+    ('busy', 'Busy'),
+    ('switched_off', 'Switched Off'),
+    ('wrong_number', 'Wrong Number'),
+
+    # Positive / Active customer states
+    ('regular_customer', 'Regular Customer'),
+    ('repeat_order', 'Repeat Order Confirmed'),
+    ('visited_shop', 'Visited Shop'),
+
+    # Sales intent
+    ('interested', 'Interested'),
+    ('not_interested', 'Not Interested'),
+    ('call_later', 'Asked to Call Later'),
+]
