@@ -1,7 +1,7 @@
 from time import timezone
 from django.db import models
 
-from common.constants import LEAVE_REASON_CHOICES
+from common.constants import FIXED_HOLIDAY_CHOICES, LEAVE_REASON_CHOICES
 
 # Create your models here.
 class Employee(models.Model):
@@ -107,14 +107,16 @@ class Holiday(models.Model):
     )
 
     name = models.CharField(
-        max_length=150,
-        help_text="Holiday name"
+        max_length=250,
+        choices=FIXED_HOLIDAY_CHOICES,
+        help_text="Fixed day of the year for holiday"
     )
 
     remarks = models.TextField(
         blank=True,
         null=True
     )
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

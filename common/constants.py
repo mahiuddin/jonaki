@@ -156,3 +156,23 @@ RESPONSE_TYPE_CHOICES = [
     ('not_interested', 'Not Interested'),
     ('call_later', 'Asked to Call Later'),
 ]
+
+FIXED_HOLIDAY_CHOICES = [
+    ('Shab-e-Barat', 'Shab-e-Barat'), 
+    ('Eid-e-Milad-un-Nabi', 'Eid-e-Milad-un-Nabi'), 
+    ('Pohela Boishakh', 'Pohela Boishakh'),
+    ('Shaheed Dibosh & International Mother Language Day', 'Shaheed Dibosh & International Mother Language Day'),
+    ('Shab-e-Qadr', 'Shab-e-Qadr'),
+    ('Independence Day', 'Independence Day'), 
+    ('May Day', 'May Day'), 
+    ('Eid al-Fitr', 'Eid al-Fitr'), 
+    ('Eid al-Adha', 'Eid al-Adha'), 
+    ('Durga Puja', 'Durga Puja'),
+    ('July Mass-uprising Day', 'July Mass-uprising Day'),
+    ('Janmashtami', 'Janmashtami'),  
+    ('Buddha Purnima', 'Buddha Purnima'), 
+    ('Christmas Day', 'Christmas Day'),
+    ('Victory Day', 'Victory Day'),
+    ('Condolence', 'Condolence'),
+    ('Others', 'Others')
+]
