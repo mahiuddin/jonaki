@@ -4,7 +4,12 @@ from django.forms import TimeInput
 
 # Register your models here.
 
-from .models import Order
+from .models import Order, OrderItem
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 1
+    autocomplete_fields = ['product']
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -25,5 +30,8 @@ class OrderAdmin(admin.ModelAdmin):
         'sale_amount',
         'status'
     )
+
+    inlines = [OrderItemInline]
+
     list_filter = ('status', 'order_date', 'order_time')
     search_fields = ('memo_number','customer_id__name')

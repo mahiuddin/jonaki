@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from customers.models import Customer
 from common.constants import ORDER_STATUS_CHOICES
+from products.models import Product
 
 # Create your models here.
 
@@ -58,3 +59,39 @@ class Order(models.Model):
 
     def __str__(self):
         return self.memo_number
+    
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.PROTECT
+    )
+
+    quantity = models.PositiveIntegerField()
+
+    sale_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    gross_price = models.DecimalField(
+        max_digits=12,
+        decimal_places=2
+    )
+
+    discount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.order.memo_number} - {self.product}"
