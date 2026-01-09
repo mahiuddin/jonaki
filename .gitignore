@@ -1,0 +1,66 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# ===============================
+# Virtual Environment
+# ===============================
+venv/
+.env/
+.env.*
+.venv/
+
+# ===============================
+# Django
+# ===============================
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Migrations (keep __init__.py)
+**/migrations/*
+!**/migrations/__init__.py
+
+# ===============================
+# PostgreSQL
+# ===============================
+*.sql
+*.backup
+*.dump
+
+# ===============================
+# Power BI / Data Analysis
+# ===============================
+*.pbix
+*.pbit
+*.csv
+*.xlsx
+
+# ===============================
+# IDE / Editor
+# ===============================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===============================
+# OS Files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Nginx / Gunicorn / Server
+# ===============================
+*.pid
+*.sock
+gunicorn.log
