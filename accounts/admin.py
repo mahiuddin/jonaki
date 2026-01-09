@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import TimeInput
 from .models import Attendance, Employee, Holiday, Leave, Salary
 # Register your models here.
 @admin.register(Employee)
@@ -14,6 +16,15 @@ class SalaryAdmin(admin.ModelAdmin):
 
 @admin.register(Attendance)
 class AttendanceAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TimeField: {
+            'widget': TimeInput(
+                attrs={
+                    'type': 'time'
+                }
+            )
+        }
+    }
     list_display = ('employee', 'attendance_date', 'in_time', 'out_time')
     list_filter = ('attendance_date',)
     date_hierarchy = 'attendance_date'

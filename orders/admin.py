@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import TimeInput
 
 # Register your models here.
 
@@ -6,6 +8,15 @@ from .models import Order
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TimeField: {
+            'widget': TimeInput(
+                attrs={
+                    'type': 'time'
+                }
+            )
+        }
+    }
     list_display = (
         'memo_number',
         'order_date',
