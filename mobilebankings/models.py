@@ -22,6 +22,14 @@ class MobileBankingProfit(models.Model):
         help_text="Additional notes or remarks"
     )
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['profit_date', 'mobile_banking_category'],
+                name='unique_profit_date_mobile_banking_category'
+            )
+        ]
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
