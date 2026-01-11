@@ -26,6 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-q&#2w9u(b(p85($-d%4)f3h8f#=-1j)6vlh^93fma==@iz7q!r'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+METABASE_SECRET_KEY = os.getenv('METABASE_SECRET_KEY')
+METABASE_SITE_URL = os.getenv('METABASE_SITE_URL')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -76,7 +79,7 @@ ROOT_URLCONF = 'jonakimachinerystore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

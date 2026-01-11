@@ -16,9 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+from analytics.admin import AnalyticsAdmin
+from analytics.views import analytics_dashboard
 from .views import home
+
+analytics_admin = AnalyticsAdmin(name='analytics_admin')
 
 urlpatterns = [
     path('', home, name='home'),
+    path('admin/analytics/', analytics_dashboard, name='analytics'),
     path('admin/', admin.site.urls),
+    # path('admin/', analytics_admin.urls),
+    # path('analytics/', analytics_admin.urls),
 ]
