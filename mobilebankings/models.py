@@ -2,7 +2,7 @@ from datetime import timezone
 from django.db import models
 
 from accounts.models import Employee
-from common.constants import MOBILE_BANKING_CATEGORY_CHOICES
+from common.constants import INVEST_TYPE_CHOICES, MOBILE_BANKING_CATEGORY_CHOICES
 from finances.models import ExpenseType
 
 # Create your models here.
@@ -102,4 +102,41 @@ class MobileBankingProfitShare(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.employee.name} - {self.profit_sharing_date} - {self.amount}"    
+        return f"{self.employee.name} - {self.profit_sharing_date} - {self.amount}"
+
+class MobileBankingInvest(models.Model):
+    invest_date = models.DateField()
+    
+    employee = models.ForeignKey(
+        Employee,
+        on_delete=models.PROTECT,
+        related_name='mobile_banking_invests'
+    )
+
+    invest_type = models.CharField(
+        max_length=100,
+        choices=INVEST_TYPE_CHOICES
+    )
+
+    amount = models.IntegerField(
+        help_text="Expense amount"
+    )
+
+    description = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['invest_date', 'invest_type'],
+                name='unique_invest_date_invest_type'
+            )
+        ]
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.employee.name} - {self.amount} ({self.invest_date})"    

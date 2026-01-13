@@ -176,3 +176,8 @@ FIXED_HOLIDAY_CHOICES = [
     ('Condolence', 'Condolence'),
     ('Others', 'Others')
 ]
+
+INVEST_TYPE_CHOICES = [
+    ('Invest', 'Invest'), 
+    ('Haolad', 'Haolad'),     
+]
