@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['95.217.7.154', '127.0.0.1', 'localhost', 'jonaki.insafee.com',
 CSRF_TRUSTED_ORIGINS = [
     'https://jonaki.insafee.com',
     'https://www.jonaki.insafee.com',
+    'https://95.217.7.154:3000',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
