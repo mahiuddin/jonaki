@@ -3,15 +3,6 @@ from django.contrib import admin
 from mobilebankings.models import MobileBankingExpense, MobileBankingInvest, MobileBankingProfit, MobileBankingProfitShare
 
 # Register your models here.
-@admin.register(MobileBankingProfit)
-class MobileBankingProfitAdmin(admin.ModelAdmin):
-    list_display = ('mobile_banking_category', 'profit_amount', 'profit_date')
-    list_filter = ('mobile_banking_category', 'profit_date')
-    date_hierarchy = 'profit_date'
-
-class Meta:
-    unique_together = ('profit_date', 'mobile_banking_category')
-
 @admin.register(MobileBankingExpense)
 class MobileBankingExpenseAdmin(admin.ModelAdmin):
     list_display = (
@@ -51,3 +42,12 @@ class MobileBankingInvestAdmin(admin.ModelAdmin):
     )
     search_fields = ('invest_date', 'employee', 'invest_type', 'description')
     list_filter = ('invest_date', 'employee', 'invest_type', 'amount')  
+
+@admin.register(MobileBankingProfit)
+class MobileBankingProfitAdmin(admin.ModelAdmin):
+    list_display = ('mobile_banking_category', 'profit_amount', 'profit_date')
+    list_filter = ('mobile_banking_category', 'profit_date')
+    date_hierarchy = 'profit_date'
+
+class Meta:
+    unique_together = ('profit_date', 'mobile_banking_category')

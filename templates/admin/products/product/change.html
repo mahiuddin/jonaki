@@ -1,0 +1,14 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools %}
+<div class="object-tools">
+    <ul class="object-tools">
+        <li>
+            <a href="{% url 'admin:import-product-prices' %}" class="button">
+                ⬆ Import Product Prices
+            </a>
+        </li>
+    </ul>
+</div>
+{{ block.super }}
+{% endblock %}

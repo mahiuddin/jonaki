@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h2>Import Product Prices</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Upload & Update" class="default">
+</form>
+
+<p><strong>Note:</strong> SKU must match existing products.</p>
+{% endblock %}
