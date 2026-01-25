@@ -38,6 +38,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://jonaki.insafee.com',
     'https://www.jonaki.insafee.com',
     'https://95.217.7.154:3000',
+    'https://metabase.insafee.com',
+    'http://www.metabase.insafee.com',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
