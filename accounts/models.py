@@ -35,6 +35,14 @@ class Salary(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['employee', 'salary_date'],
+                name='unique_employee_salary_date'
+            )
+        ]
+
     def __str__(self):
         return f"{self.employee.name} - {self.salary_date} - {self.amount}"
     
