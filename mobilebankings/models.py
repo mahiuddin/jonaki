@@ -130,8 +130,8 @@ class MobileBankingInvest(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['invest_date', 'invest_type'],
-                name='unique_invest_date_invest_type'
+                fields=['invest_date','employee','invest_type'],
+                name='unique_invest_date_employee_invest_type'
             )
         ]
 
