@@ -28,6 +28,7 @@ class OrderAdmin(admin.ModelAdmin):
         'order_time',
         'customer_id',
         'sale_amount',
+        'profit',
         'status'
     )
 
