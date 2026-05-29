@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.forms import TimeInput
+from django.db import models
 
 # Register your models here.
 from .models import CustomerFollowUp, CustomerType, Customer, NoSaleReason
@@ -24,12 +26,30 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(NoSaleReason)
 class NoSaleReasonAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TimeField: {
+            'widget': TimeInput(
+                attrs={
+                    'type': 'time'
+                }
+            )
+        }
+    }
     list_display = ('customer', 'reason', 'visiting_date', 'visiting_time')
     list_filter = ('reason', 'visiting_date')
     search_fields = ('customer__name',)
 
 @admin.register(CustomerFollowUp)
 class CustomerContactAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TimeField: {
+            'widget': TimeInput(
+                attrs={
+                    'type': 'time'
+                }
+            )
+        }
+    }
     list_display = (
         'customer',
         'contact_date',
