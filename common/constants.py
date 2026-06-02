@@ -182,3 +182,13 @@ INVEST_TYPE_CHOICES = [
     ('Invest', 'Invest'), 
     ('Haolad', 'Haolad'),     
 ]
+
+OUTING_REASON_CHOICES = (
+    ('personal', 'Personal Work'),
+    ('delivery', 'Product Delivery'),
+    ('bank', 'Bank Work'),
+    ('supplier', 'Supplier Visit'),
+    ('customer', 'Customer Visit'),
+    ('sick', 'Sick'),
+    ('other', 'Other'),
+)

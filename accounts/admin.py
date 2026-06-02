@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.db import models
 from django.forms import TimeInput
-from .models import Attendance, Employee, Holiday, Leave, Salary
+from .models import Attendance, Employee, EmployeeOutsideLog, Holiday, Leave, Salary
 # Register your models here.
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('name','salary','phone', 'created_at', 'updated_at')
+    list_display = ('name','salary','phone', 'meal_allowance', 'snacks_allowance', 'hourly_rate', 'created_at', 'updated_at')
     search_fields = ('name',)
 
 @admin.register(Salary)
@@ -25,7 +25,7 @@ class AttendanceAdmin(admin.ModelAdmin):
             )
         }
     }
-    list_display = ('employee', 'attendance_date', 'in_time', 'out_time')
+    list_display = ('employee', 'attendance_date', 'in_time', 'out_time', 'remarks')
     list_filter = ('attendance_date',)
     date_hierarchy = 'attendance_date'
     search_fields = ('employee__name',)
@@ -42,3 +42,19 @@ class HolidayAdmin(admin.ModelAdmin):
     list_display = ('holiday_date', 'name')
     date_hierarchy = 'holiday_date'
     search_fields = ('name',)
+
+@admin.register(EmployeeOutsideLog)
+class EmployeeOutsideLogAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TimeField: {
+            'widget': TimeInput(
+                attrs={
+                    'type': 'time'
+                }
+            )
+        }
+    }
+    list_display = ('employee', 'outing_date', 'out_time', 'in_time','duration_minutes','reason')
+    list_filter = ('outing_date', 'employee','reason')
+    date_hierarchy = 'outing_date'
+    search_fields = ('employee__name', 'reason')  

@@ -1,18 +1,34 @@
+import datetime
 from time import timezone
 from django.db import models
 
-from common.constants import FIXED_HOLIDAY_CHOICES, LEAVE_REASON_CHOICES
+from common.constants import FIXED_HOLIDAY_CHOICES, LEAVE_REASON_CHOICES, OUTING_REASON_CHOICES
 
 # Create your models here.
 class Employee(models.Model):
     name = models.CharField(max_length=100)
     salary = models.IntegerField(help_text="Employee's monthly salary")
     phone = models.CharField(max_length=20, blank=True, null=True)
+
+    meal_allowance = models.PositiveIntegerField(default=0)
+    snacks_allowance = models.PositiveIntegerField(default=0)
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    remarks = models.TextField(blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)  # correct: function, no ()
     updated_at = models.DateTimeField(auto_now=True)  # will set initial value
 
     def __str__(self):
         return self.name
+    
+    @property
+    def total_salary_package(self):
+        return (
+            self.salary +
+            self.meal_allowance +
+            self.snacks_allowance
+        )
 
 class Salary(models.Model):
     employee = models.ForeignKey(
@@ -60,6 +76,8 @@ class Attendance(models.Model):
         blank=True,
         null=True
     )
+
+    remarks = models.TextField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -131,3 +149,45 @@ class Holiday(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.holiday_date}"
+    
+class EmployeeOutsideLog(models.Model):
+    employee = models.ForeignKey(
+        'Employee',
+        on_delete=models.CASCADE,
+        related_name='outside_logs'
+    )
+
+    outing_date = models.DateField()
+
+    out_time = models.TimeField()
+    in_time = models.TimeField(
+        blank=True,
+        null=True
+    )
+
+    reason = models.CharField(
+        max_length=250,
+        choices=OUTING_REASON_CHOICES,
+        default='Personal Work',
+        help_text="Why employee outside"
+    )
+
+    remarks = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.employee} - {self.outing_date}"
+    
+    
+    @property
+    def duration_minutes(self):
+        if self.in_time and self.out_time:
+            start = datetime.combine(self.outing_date, self.out_time)
+            end = datetime.combine(self.outing_date, self.in_time)
+            return int((end - start).total_seconds() / 60)
+        return 0
