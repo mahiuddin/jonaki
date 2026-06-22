@@ -125,6 +125,10 @@ MOBILE_BANKING_CATEGORY_CHOICES = [
     ('SURECASH', 'SureCash'),
     ('MCASH', 'mCash'),
     ('FLATBELT', 'Flatbelt'),
+    ('TIMINGBELT', 'Timing Belt'),
+    ('HullerParts', 'Huller Parts'),
+    ('SAWMILL', 'Saw Mill'),
+    ('VBELT', 'V Belt'),
     ('OTHER', 'Other'),
 ]
 
