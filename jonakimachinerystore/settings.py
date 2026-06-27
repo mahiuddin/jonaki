@@ -37,7 +37,7 @@ ALLOWED_HOSTS = ['95.217.7.154', '127.0.0.1', 'localhost', 'jonaki.insafee.com',
 CSRF_TRUSTED_ORIGINS = [
     'https://jonaki.insafee.com',
     'https://www.jonaki.insafee.com',
-    'https://95.217.7.154:3000',
+    'https://95.217.7.154:9001',
     'https://metabase.insafee.com',
     'http://www.metabase.insafee.com',
 ]
@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -156,7 +157,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
