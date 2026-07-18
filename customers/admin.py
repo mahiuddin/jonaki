@@ -19,6 +19,7 @@ class CustomerAdmin(admin.ModelAdmin):
         'customer_type',
         'district',
         'area',
+        'order_frequency_days',
         'created_at'
     )
     search_fields = ('name', 'phone', 'contact_person')

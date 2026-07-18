@@ -33,6 +33,15 @@ class Customer(models.Model):
        choices=DISTRICT_CHOICES
     )
     area = models.CharField(max_length=100, blank=True, null=True)
+    order_frequency_days = models.PositiveIntegerField(
+        default=0,
+        help_text="Expected number of days between customer orders."
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Additional notes about the customer."
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
