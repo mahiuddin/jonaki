@@ -25,7 +25,7 @@ DISTRICT_CHOICES = (
         ('Jhalokati', 'Jhalokati'),
         ('Jhenaidah', 'Jhenaidah'), 
         ('Joypurhat', 'Joypurhat'),
-        ('Khagrachari', 'Khagrachari'),
+        ('Khagrachhari', 'Khagrachhari'),
         ('Khulna', 'Khulna'),
         ('Kishoreganj', 'Kishoreganj'),
         ('Kurigram', 'Kurigram'),
