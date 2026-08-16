@@ -10,7 +10,6 @@ DISTRICT_CHOICES = (
         ('Chapai Nawabganj', 'Chapai Nawabganj'),
         ('Chattogram', 'Chattogram'),
         ('Chuadanga', 'Chuadanga'),
-        ('Comilla', 'Comilla'),
         ('Coxs Bazar', 'Coxs Bazar'),
         ('Cumilla', 'Cumilla'),
         ('Dhaka', 'Dhaka'),
