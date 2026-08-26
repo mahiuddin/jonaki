@@ -78,7 +78,8 @@ MEASUREMENT_UNIT_CHOICES = (
         ('Inch', 'Inch'),
         ('Meter', 'Meter'),
         ('Feet', 'Feet'),
-        ('Packet', 'Packet')
+        ('Packet', 'Packet'),
+        ('Rib', 'Rib')
 )
 
 PRODUCT_STATUS_CHOICES = [
