@@ -37,7 +37,7 @@ class ProductAdmin(admin.ModelAdmin):
         'name', 'sku', 'category', 'brand',
         'quantity', 'buying_price', 'status'
     )
-    list_filter = ('brand', 'product_type', 'status')
+    list_filter = ('category', 'product_type', 'brand', 'status')
     search_fields = ('name', 'sku')
     
     
