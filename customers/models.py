@@ -20,7 +20,7 @@ class CustomerType(models.Model):
     
 class Customer(models.Model):
     name = models.CharField(max_length=150)
-    phone = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True, unique=True)
     customer_type = models.ForeignKey(
         CustomerType,
         on_delete=models.PROTECT,
