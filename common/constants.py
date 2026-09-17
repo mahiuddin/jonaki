@@ -1,3 +1,31 @@
+PAYMENT_METHOD_CHOICES = [
+        ('CASH', 'Cash'),
+        ('BANK', 'Bank Transfer'),
+        ('BKASH', 'bKash'),
+        ('NAGAD', 'Nagad'),
+        ('CHEQUE', 'Cheque'),
+    ]
+
+MOVEMENT_TYPE_PURCHASE = 'PURCHASE'
+MOVEMENT_TYPE_SALE = 'SALE'
+MOVEMENT_TYPE_RETURN_CUSTOMER = 'RETURN_CUSTOMER'
+MOVEMENT_TYPE_RETURN_SUPPLIER = 'RETURN_SUPPLIER'
+MOVEMENT_TYPE_ADJUSTMENT_ADD = 'ADJUSTMENT_ADD'
+MOVEMENT_TYPE_ADJUSTMENT_SUB = 'ADJUSTMENT_SUB'
+MOVEMENT_TYPE_DAMAGE = 'DAMAGE'
+MOVEMENT_TYPE_LOST = 'LOST'
+
+MOVEMENT_TYPES = (
+    (MOVEMENT_TYPE_PURCHASE, 'Purchase (Stock In)'),
+    (MOVEMENT_TYPE_SALE, 'Sale (Stock Out)'),
+    (MOVEMENT_TYPE_RETURN_CUSTOMER, 'Customer Return (Stock In)'),
+    (MOVEMENT_TYPE_RETURN_SUPPLIER, 'Supplier Return (Stock Out)'),
+    (MOVEMENT_TYPE_ADJUSTMENT_ADD, 'Manual Adjustment (Stock In)'),
+    (MOVEMENT_TYPE_ADJUSTMENT_SUB, 'Manual Adjustment (Stock Out)'),
+    (MOVEMENT_TYPE_DAMAGE, 'Damaged (Stock Out)'),
+    (MOVEMENT_TYPE_LOST, 'Lost (Stock Out)'),
+)
+
 DISTRICT_CHOICES = (
         ('Bagerhat', 'Bagerhat'),
         ('Bandarban', 'Bandarban'),

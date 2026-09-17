@@ -46,12 +46,13 @@ class ProductAdmin(admin.ModelAdmin):
         response['Content-Disposition'] = 'attachment; filename=product_prices.csv'
 
         writer = csv.writer(response)
-        writer.writerow(['sku', 'name', 'buying_price', 'discount_price'])
+        writer.writerow(['sku', 'name', 'quantity', 'buying_price', 'discount_price'])
 
         for product in queryset:
             writer.writerow([
                 product.sku,
                 product.name,
+                product.quantity,
                 product.buying_price,
                 product.discount_price
             ])
@@ -77,7 +78,9 @@ class ProductAdmin(admin.ModelAdmin):
 
                         try:
                             product = Product.objects.get(sku=sku)
+                            product.name = row['name']
                             product.buying_price = row['buying_price']
+                            product.quantity = row['quantity']
                             product.discount_price = row.get('discount_price') or 0
                             product.save()
                             updated += 1

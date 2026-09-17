@@ -4,7 +4,7 @@ from django.forms import TimeInput
 
 # Register your models here.
 
-from .models import Order, OrderItem
+from .models import Order, OrderItem, OrderReturn
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
@@ -36,3 +36,25 @@ class OrderAdmin(admin.ModelAdmin):
 
     list_filter = ('status', 'order_date', 'order_time')
     search_fields = ('memo_number','customer_id__name')
+
+@admin.register(OrderReturn)
+class OrderReturnAdmin(admin.ModelAdmin):
+    list_display = [
+        'return_date',
+        'order',
+        'product',
+        'quantity',
+        'unit_price',
+        'total_amount',
+        'remarks',
+    ]
+    list_filter = ['return_date', 'created_at']
+    
+    # 2. Replaces dropdown with a search input for Order and Product
+    autocomplete_fields = ['order', 'product']
+    
+    readonly_fields = ['total_amount']
+    date_hierarchy = 'return_date'
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('order', 'product')

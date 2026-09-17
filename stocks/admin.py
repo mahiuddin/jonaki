@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import CustomerReconciliation, FinancialReconciliation, ProductReconciliation, SupplierReconciliation
+from .models import CustomerReconciliation, FinancialReconciliation, ProductReconciliation, StockAdjustment, StockMovement, SupplierReconciliation
 
 # Register your models here.
 
@@ -40,3 +40,32 @@ class FinancialReconciliationAdmin(admin.ModelAdmin):
     
     # 3. Search by account name or specific amount
     search_fields = ('account_name', 'amount', 'remarks')
+
+@admin.register(StockMovement)
+class StockMovementAdmin(admin.ModelAdmin):
+    list_display = [
+        'created_at',
+        'product',
+        'movement_type',
+        'quantity',
+        'reference_number',
+    ]
+    list_filter = ['movement_type', 'created_at']
+    search_fields = ['product__name', 'product__sku', 'reference_number']
+    autocomplete_fields = ['product']
+    date_hierarchy = 'created_at'
+
+    # Prevent manual edits/deletions to preserve strict audit trails
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+@admin.register(StockAdjustment)
+class StockAdjustmentAdmin(admin.ModelAdmin):
+    list_display = ['created_at', 'product', 'reason', 'quantity', 'remarks', 'adjustment_date']
+    list_filter = ['reason', 'created_at']
+    search_fields = ['product__name', 'product__sku', 'remarks']
+    autocomplete_fields = ['product']
+    date_hierarchy = 'created_at'

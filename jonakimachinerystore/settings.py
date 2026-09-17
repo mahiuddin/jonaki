@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'data_imports',
     'stocks',
     'mobilebankings',
+    'purchases'
 ]
 
 MIDDLEWARE = [
