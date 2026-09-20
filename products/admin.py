@@ -2,6 +2,9 @@ import csv
 from django.http import HttpResponse
 from django.contrib import admin, messages
 
+from import_export.admin import ExportActionMixin, ImportExportModelAdmin
+from .resources import ProductBulkUpdateResource
+
 from django.urls import path, reverse
 from django.shortcuts import render, redirect
 from django.db import transaction
@@ -32,9 +35,10 @@ class BrandAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(ExportActionMixin, ImportExportModelAdmin):
+    resource_class = ProductBulkUpdateResource
     list_display = (
-        'name', 'sku', 'category', 'brand',
+        'name', 'sku', 'category', 'brand','product_type', 'size',
         'quantity', 'buying_price', 'status'
     )
     list_filter = ('category', 'product_type', 'brand', 'status')

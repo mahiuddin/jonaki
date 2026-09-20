@@ -19,7 +19,6 @@ class Supplier(models.Model):
         max_digits=12,
         decimal_places=2,
         default=0.00,
-        editable=False,
         help_text="Live current due owed to supplier",
     )
 
