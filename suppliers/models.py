@@ -22,6 +22,12 @@ class Supplier(models.Model):
         help_text="Live current due owed to supplier",
     )
 
+    description = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Additional notes about the supplier."
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
