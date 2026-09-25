@@ -10,6 +10,11 @@ class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 1
     autocomplete_fields = ['product']
+    fields = [
+        'product', 
+        'quantity', 
+        'sale_price'
+    ]
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):

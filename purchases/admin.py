@@ -11,12 +11,8 @@ class PurchaseItemInline(admin.TabularInline):
     fields = [
         'product', 
         'quantity', 
-        'purchase_price', 
-        'gross_amount', 
-        'discount', 
-        'net_amount'
+        'purchase_price'
     ]
-
 
 @admin.register(Purchase)
 class PurchaseAdmin(admin.ModelAdmin):

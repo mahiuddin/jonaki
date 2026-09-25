@@ -26,7 +26,7 @@ def handle_purchase_item_save(sender, instance, created, **kwargs):
             )
 
             # Add line total to supplier due
-            supplier.due_amount += instance.net_amount
+            supplier.due_amount += purchase.net_amount
             supplier.save(update_fields=['due_amount', 'updated_at'])
 
             # Create initial stock movement ledger entry
@@ -81,7 +81,7 @@ def handle_purchase_item_delete(sender, instance, **kwargs):
         product.save(update_fields=['quantity', 'updated_at'])
 
         # Revert line total from supplier due
-        supplier.due_amount -= instance.net_amount
+        supplier.due_amount -= purchase.net_amount
         supplier.save(update_fields=['due_amount', 'updated_at'])
 
         # Delete corresponding movement ledger record
@@ -149,8 +149,8 @@ def handle_purchase_return_item_delete(sender, instance, **kwargs):
         parent_return = instance.purchase_return
 
         # Deleting a return restores what we owe
-        Supplier.due_amount += instance.total_amount
-        Supplier.save(update_fields=['due_amount', 'updated_at'])
+        parent_return.supplier.due_amount += parent_return.total_amount
+        parent_return.supplier.save(update_fields=['due_amount', 'updated_at'])
 
         # Restore returned stock back into inventory balance
         product.quantity += instance.quantity

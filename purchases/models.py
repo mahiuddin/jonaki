@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import models
 from django.db.models.aggregates import Sum
 from django.utils import timezone
@@ -61,19 +63,26 @@ class PurchaseItem(models.Model):
     )
 
     gross_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
-    discount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     net_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)    
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+            # Compute gross and net amounts (Quantity * Purchase Price)
+            total = Decimal(self.quantity) * Decimal(self.purchase_price)
+            self.gross_amount = total
+            self.net_amount = total
+    
+            super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return f"{self.product.name} ({self.quantity} x {self.purchase_price})"
+
     class Meta:
         ordering = ['id']
         verbose_name = "Purchase Item"
         verbose_name_plural = "Purchase Items"
-
-    def __str__(self):
-        return f"{self.purchase.purchase_number} - {self.product.name}"
 
     @property
     def total_amount(self):

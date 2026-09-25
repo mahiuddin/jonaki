@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import models
 from django.utils import timezone
 
@@ -92,6 +94,13 @@ class OrderItem(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Compute gross and net amounts (Quantity * Purchase Price)
+        total = Decimal(self.quantity) * Decimal(self.sale_price)
+        self.gross_price = total 
+        
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.order.memo_number} - {self.product}"
