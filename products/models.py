@@ -81,10 +81,10 @@ class Product(models.Model):
         choices=MEASUREMENT_UNIT_CHOICES
     )
 
-    size = models.CharField(
-        max_length=100,
-        blank=True,
-        null=True
+    size = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=1.00
     )
 
     quantity = models.DecimalField(

@@ -97,9 +97,10 @@ class OrderItem(models.Model):
 
     def save(self, *args, **kwargs):
         # Compute gross and net amounts (Quantity * Purchase Price)
-        total = Decimal(self.quantity) * Decimal(self.sale_price)
-        self.gross_price = total 
-        
+        product_size = self.product.size or Decimal('1.00')
+        total = (Decimal(self.quantity) * Decimal(self.sale_price) * Decimal(product_size))
+        self.gross_price = total
+                     
         super().save(*args, **kwargs)
 
     def __str__(self):

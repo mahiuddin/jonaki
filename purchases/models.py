@@ -70,7 +70,14 @@ class PurchaseItem(models.Model):
 
     def save(self, *args, **kwargs):
             # Compute gross and net amounts (Quantity * Purchase Price)
-            total = Decimal(self.quantity) * Decimal(self.purchase_price)
+            # total = Decimal(self.quantity) * Decimal(self.purchase_price)
+            # self.gross_amount = total
+            # self.net_amount = total
+            
+            product_size = self.product.size or Decimal('1.00')
+
+            total = (Decimal(self.quantity) * Decimal(self.purchase_price) * Decimal(product_size))
+
             self.gross_amount = total
             self.net_amount = total
     
@@ -86,7 +93,7 @@ class PurchaseItem(models.Model):
 
     @property
     def total_amount(self):
-        return self.quantity * self.purchase_price
+        return self.quantity * self.purchase_price * self.product.size
 
 class PurchaseReturn(models.Model):
     """Master Header: Supplier Return Memo / Debit Note."""
