@@ -152,7 +152,7 @@ class FinancialReconciliation(models.Model):
 class StockMovement(models.Model):
     product = models.ForeignKey(
         'products.Product',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='stock_movements'
     )
     quantity = models.DecimalField(
